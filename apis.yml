@@ -30,6 +30,11 @@ url:
 modified: '2026-03-24'
 apis: []
 common:
+  - type: ParentCompany
+    url: https://apis.io/providers/amd/
+    name: AMD
+    x-relationship: acquired
+    x-evidence: "Xilinx was an American technology company that developed programmable logic devices and the associated software before being acquired by AMD."
   - type: DomainSecurity
     url: security/xilinx-domain-security.yml
   - type: GitHubOrganization
