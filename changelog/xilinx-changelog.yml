@@ -1,0 +1,72 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  GitHub Releases API for github.com/Xilinx/PYNQ, github.com/Xilinx/brevitas and
+  github.com/Xilinx/XRT, queried 2026-09-04.
+note: >-
+  Xilinx publishes no single dated product changelog on a web property it controls — every
+  xilinx.com documentation path now 301s to docs.amd.com. What it does publish, and keeps
+  current, is per-repository GitHub releases in its own organization. Those are the dated
+  change records captured here. Release notes for the Vivado/Vitis toolchain are AMD-hosted
+  under docs.amd.com and are the parent company's artifact, not Xilinx's.
+scheme: semver (per repository), with named PYNQ releases
+surfaces:
+  - name: PYNQ
+    url: https://github.com/Xilinx/PYNQ/releases
+    current_version: v3.1.2
+    entries:
+      - version: v3.1.2
+        date: '2025-09-30'
+        title: Carlisle - v3.1.2 bugfix release
+        breaking: false
+      - version: '3.1.1'
+        date: '2025-09-26'
+        title: Carlisle - v3.1.1 bugfix release
+        breaking: false
+      - version: v3.1
+        date: '2025-07-29'
+        title: Carlisle Release
+        breaking: false
+      - version: v3.0.1
+        date: '2022-10-26'
+        title: Belfast - bugfix release
+        breaking: false
+      - version: v3.0.0
+        date: '2022-10-11'
+        title: Belfast Release
+        breaking: true
+        note: major version bump
+  - name: Brevitas
+    url: https://github.com/Xilinx/brevitas/releases
+    current_version: v0.13.2
+    entries:
+      - version: v0.13.2
+        date: '2026-08-28'
+        breaking: false
+      - version: v0.13.1
+        date: '2026-08-25'
+        breaking: false
+      - version: v0.13.0
+        date: '2026-07-14'
+        breaking: false
+        note: minor version bump, 0.x so API changes are possible
+      - version: v0.12.1
+        date: '2025-08-28'
+        breaking: false
+  - name: XRT (Xilinx Runtime)
+    url: https://github.com/Xilinx/XRT/releases
+    current_version: 2.25.0
+    entries:
+      - version: 2.25.0
+        date: '2026-08-18'
+        breaking: false
+      - version: 202610.2.23.0_Canonical
+        date: '2026-04-16'
+        breaking: false
+        note: Canonical/Ubuntu-targeted build stream
+      - version: 2.21.75
+        date: '2026-02-10'
+        breaking: false
+      - version: 2.21.70
+        date: '2025-12-17'
+        breaking: false

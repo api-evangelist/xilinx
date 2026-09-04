@@ -1,0 +1,59 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  Live probes of www.xilinx.com lifecycle/support paths and the GitHub Releases API for the
+  Xilinx organization, 2026-09-04.
+note: >-
+  Xilinx has no API to version, deprecate or run an SLA against. Its lifecycle signal is
+  software-release cadence in its own GitHub organization plus a hardware product-discontinuation
+  programme that has migrated to AMD's documentation host.
+versioning:
+  scheme: per-repository semver, with named PYNQ releases (Belfast, Carlisle)
+  api_versioning: n/a — no HTTP API exists, so there is no URL/header/media-type version scheme.
+  cadence:
+    - repository: XRT
+      latest: 2.25.0
+      released: '2026-08-18'
+    - repository: brevitas
+      latest: v0.13.2
+      released: '2026-08-28'
+    - repository: PYNQ
+      latest: v3.1.2
+      released: '2025-09-30'
+  evidence: https://github.com/Xilinx/XRT/releases
+deprecation:
+  api_deprecation_policy: null
+  api_deprecation_headers: null
+  note: >-
+    No RFC 8594 Sunset/Deprecation header policy, and no API deprecation policy, because there
+    is no API. NO `Deprecation` pointer is emitted for this record — asserting one would credit
+    Xilinx with an API deprecation policy it does not have.
+  product_discontinuation_programme:
+    exists: true
+    kind: hardware/product PDN (Product Discontinuation Notice) and Customer Notices
+    evidence:
+      - url: https://www.xilinx.com/support/documentation-navigation/customer-notices.html
+        status: 301
+        redirects_to: >-
+          https://docs.amd.com/search/all?value-filters=Document_Type_custom~%22Advisory+%26+Errata%7CCustomer+Notices+%26+Notes%22&content-lang=en-US
+    note: >-
+      The programme is real and long-standing, but the notices are now published on AMD's
+      documentation host under AMD's document taxonomy — it is the parent company's surface,
+      reached through a redirect from Xilinx's own domain.
+status_page:
+  exists: false
+  url: null
+  note: >-
+    No status page found on any Xilinx-controlled host, and none is expected: there is no
+    hosted service to report availability for. NO `StatusPage` pointer is emitted.
+sla:
+  published: false
+  note: Support is contractual (AMD Adaptive Support), with no published availability SLA.
+support:
+  url: https://adaptivesupport.amd.com/s/
+  reached_via: https://www.xilinx.com/support.html (HTTP 301)
+end_of_life:
+  company_brand: >-
+    Xilinx itself is end-of-life as an operating brand — AMD completed the $50B acquisition in
+    February 2022 and every xilinx.com web path now 301s into amd.com. The GitHub organization
+    github.com/Xilinx remains active and is the only surface still publishing under the name.

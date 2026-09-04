@@ -1,0 +1,25 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  https://www.xilinx.com/products/design-tools/vivado.html (HTTP 301) and
+  https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/vivado.html
+plan_count: 0
+note: >-
+  Xilinx publishes no plans or pricing of its own. It never had API pricing — there is no API —
+  and its design-tool licensing (Vivado ML Standard/Enterprise, Vitis) is now sold and priced
+  under AMD: every xilinx.com product and licensing path 301-redirects into amd.com. An honest
+  zero for the Xilinx brand, not an unsearched gap.
+plans: []
+evidence:
+  - url: https://www.xilinx.com/products/design-tools/vivado.html
+    status: 301
+    redirects_to: https://www.amd.com/en/products/software/adaptive-socs-and-fpgas/vivado.html
+  - url: https://www.xilinx.com/support/download.html
+    status: 301
+    redirects_to: https://www.amd.com/en/support/downloads/adaptive-socs-and-fpgas.html
+free_tier:
+  exists: true
+  note: >-
+    Vivado ML Standard Edition is offered at no cost, and the entire artifact set in this repo
+    (PYNQ, Brevitas, FINN, RapidWright, XRT) is open source under BSD-3-Clause/Apache-2.0/MIT
+    on github.com/Xilinx. That is free software, not a priced plan, so plan_count stays 0.

@@ -1,0 +1,78 @@
+# Xilinx
+
+> Xilinx was an American technology company that developed programmable logic devices (FPGAs,
+> Zynq SoCs, Versal adaptive SoCs) and the associated design software, before being acquired by
+> AMD in a $50B all-stock deal that closed in February 2022. The Xilinx brand no longer operates
+> its own web properties — www.xilinx.com 301-redirects to www.amd.com, docs.xilinx.com to
+> docs.amd.com, and support.xilinx.com to adaptivesupport.amd.com. What remains actively
+> published under the Xilinx name is its GitHub organization (github.com/Xilinx, 469 public
+> repositories, verified), which is where every machine-readable contract in this profile came
+> from.
+
+## Provenance
+- generated: 2026-09-04
+- method: generated
+- source: apis.yml + artifacts in this repository (github.com/api-evangelist/xilinx)
+- No provider-published llms.txt exists. www.xilinx.com/llms.txt returns 404; docs.amd.com/llms.txt
+  returns HTTP 200 with an HTML single-page-app shell, which is a soft miss, not a document.
+
+## API surface
+Xilinx publishes **no HTTP/REST API and no OpenAPI definition**. Contract discovery was run
+against every host this record knows (www.xilinx.com, xilinx.github.io) for /openapi.json,
+/swagger.json, /api-docs, /docs, GraphQL introspection, MCP tools/list, OGC conformance and
+A2A agent cards; every probe missed. The company's machine-readable contracts are Protocol
+Buffers service definitions, not web APIs.
+
+## Contracts (gRPC / Protocol Buffers)
+Six proto3 services, 108 RPCs, from the first-party Xilinx/PYNQ repository (BSD-3-Clause).
+Together they are the PYNQ remote-device protocol: a gRPC server on the Zynq/RFSoC board,
+a PYNQ client on the host.
+- [RemoteDevice](grpc/xilinx-pynq-remote-device.proto): 7 RPCs — bitstream download, PL clock
+  configuration, file read/write/exists, shutdown. Streaming download/readfile/writefile.
+- [Mmio](grpc/xilinx-pynq-mmio.proto): 3 RPCs — memory-mapped register get/read/write.
+- [Gpio](grpc/xilinx-pynq-gpio.proto): 7 RPCs — sysfs GPIO export, read, write, unexport.
+- [RemoteBuffer](grpc/xilinx-pynq-buffer.proto): 9 RPCs — DMA buffer allocate/free, cache flush
+  and invalidate, physical/virtual address translation. Streaming read and write.
+- [Xrfdc](grpc/xilinx-pynq-xrfdc.proto): 77 RPCs — RFSoC RF Data Converter tile/block control,
+  mixer and NCO settings, PLL and FIFO status.
+- [Xrfclk](grpc/xilinx-pynq-xrfclk.proto): 5 RPCs — LMK/LMX RF clock device discovery and
+  register programming.
+- Index and per-service summary: [grpc/xilinx-grpc.yml](grpc/xilinx-grpc.yml)
+These are on-device endpoints. There is no vendor-operated host, so there is no base URL and
+nothing an agent can call over the public internet.
+
+## Packages and SDKs
+- [packages/xilinx-packages.yml](packages/xilinx-packages.yml) — eight first-party PyPI packages
+  with registry-read versions and dates: pynq 3.1.2 (2025-09-30), brevitas 0.13.2 (2026-08-28),
+  rapidwright 2026.1.0 (2026-06-30), pynq-dpu 2.5.1 (2022-11-08), pynq-helloworld 3.0.0,
+  finn-base 0.0.3, finn 0.0.1 (stub), pyxir 0.0.1. XRT ships as DEB/RPM, release 2.25.0
+  (2026-08-18). Note: the PyPI package named `xrt` is an unrelated x-ray tracing project and
+  is explicitly excluded.
+
+## Command line
+- [cli/xilinx-cli.yml](cli/xilinx-cli.yml) — xrt-smi (program, validate, examine, configure,
+  reset) and xclbinutil, documented at xilinx.github.io/XRT.
+
+## Other artifacts in this profile
+- [changelog/xilinx-changelog.yml](changelog/xilinx-changelog.yml) — release history read from
+  the GitHub releases API for PYNQ, Brevitas and XRT.
+- [conventions/xilinx-conventions.yml](conventions/xilinx-conventions.yml) — gRPC envelope,
+  idempotency (none), reversibility.
+- [conformance/xilinx-conformance.yml](conformance/xilinx-conformance.yml)
+- [lifecycle/xilinx-lifecycle.yml](lifecycle/xilinx-lifecycle.yml)
+- [security/xilinx-domain-security.yml](security/xilinx-domain-security.yml)
+- [well-known/xilinx-well-known.yml](well-known/xilinx-well-known.yml) — a recorded absence.
+- [mcp/xilinx-mcp.yml](mcp/xilinx-mcp.yml) — candidate only; nobody ships a Xilinx MCP server.
+
+## Where the human documentation now lives (AMD-hosted)
+- Documentation: https://docs.amd.com/ (docs.xilinx.com 301s here)
+- Developer portal: https://www.amd.com/en/developer.html (developer.xilinx.com 301s here)
+- Support: https://adaptivesupport.amd.com/s/ (support pages 301 here)
+- Downloads: https://www.amd.com/en/support/downloads/adaptive-socs-and-fpgas.html
+- GitHub organization: https://github.com/Xilinx
+
+## What is NOT here, and why
+No agent card, no MCP server, no AsyncAPI, no webhooks, no OAuth scopes, no sandbox, no
+published rate limits and no published plans. This is a semiconductor design-tools business
+absorbed into a parent company; its developer surface is compilers, runtimes and boards, not
+a callable web platform. These absences are measured, not assumed.

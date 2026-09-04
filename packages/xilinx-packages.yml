@@ -1,0 +1,133 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  PyPI JSON metadata endpoints (pypi.org/pypi/<pkg>/json) and the GitHub Xilinx organization
+  (github.com/Xilinx), queried 2026-09-04.
+note: >-
+  Xilinx ships no HTTP API client libraries — it has no HTTP API. What it publishes are
+  first-party Python packages for its adaptive-computing stack (PYNQ board framework,
+  Brevitas quantization, FINN dataflow compiler, RapidWright). Versions and dates below are
+  read from each registry's metadata endpoint, not from prose.
+registries_checked: [pypi, npm, maven-central, crates.io]
+registries_with_nothing:
+  - registry: npm
+    note: >-
+      npm search for "xilinx" returns only third-party packages (xilt, an unaffiliated
+      Bitbucket-hosted build helper). Xilinx publishes no npm scope.
+  - registry: maven-central
+    note: >-
+      search.maven.org timed out on the com.xilinx* group query on 2026-09-04; RapidWright's
+      Java artifacts are distributed as GitHub release JARs. version null — not checked
+      successfully, recorded as a gap rather than a guess.
+packages:
+  - name: pynq
+    registry: pypi
+    url: https://pypi.org/project/pynq/
+    repository: https://github.com/Xilinx/PYNQ
+    language: python
+    official: true
+    version: 3.1.2
+    published: '2025-09-30'
+    description: >-
+      PYNQ — Python Productivity for Zynq. The board framework whose gRPC remote-device
+      protocol is captured in grpc/.
+  - name: brevitas
+    registry: pypi
+    url: https://pypi.org/project/brevitas/
+    repository: https://github.com/Xilinx/brevitas
+    language: python
+    official: true
+    version: 0.13.2
+    published: '2026-08-28'
+    description: Neural network quantization library for PyTorch, targeting Xilinx FPGA inference.
+  - name: rapidwright
+    registry: pypi
+    url: https://pypi.org/project/rapidwright/
+    repository: https://github.com/Xilinx/RapidWright
+    language: python
+    official: true
+    version: 2026.1.0
+    published: '2026-06-30'
+    description: Python distribution of RapidWright, the customized-FPGA-implementation framework for Vivado.
+  - name: pynq-dpu
+    registry: pypi
+    url: https://pypi.org/project/pynq-dpu/
+    repository: https://github.com/Xilinx/DPU-PYNQ
+    language: python
+    official: true
+    version: 2.5.1
+    published: '2022-11-08'
+    description: DPU (Deep-learning Processing Unit) overlay for PYNQ.
+    decay_signal: >-
+      Last release 2022-11-08 while its parent PYNQ shipped 3.1.2 in 2025 — the DPU overlay
+      package is roughly three years behind the framework it plugs into.
+  - name: pynq-helloworld
+    registry: pypi
+    url: https://pypi.org/project/pynq-helloworld/
+    repository: https://github.com/Xilinx/PYNQ-HelloWorld
+    language: python
+    official: true
+    version: 3.0.0
+    published: '2022-10-31'
+    description: Introductory PYNQ example package.
+  - name: finn-base
+    registry: pypi
+    url: https://pypi.org/project/finn-base/
+    repository: https://xilinx.github.io/finn/
+    language: python
+    official: true
+    version: 0.0.3
+    published: '2021-11-04'
+    description: Core infrastructure for the FINN dataflow compiler.
+    decay_signal: >-
+      Last PyPI release 2021-11-04 while github.com/Xilinx/finn is still pushed daily —
+      the project moved off PyPI to source installation; the registry copy is abandoned.
+  - name: finn
+    registry: pypi
+    url: https://pypi.org/project/finn/
+    repository: https://github.com/Xilinx/finn
+    language: python
+    official: true
+    version: 0.0.1
+    published: '2021-08-24'
+    description: >-
+      Placeholder release only. FINN (1,046 stars, pushed 2026-09-04) is installed from source
+      or via its Docker flow; the PyPI name is a reserved 0.0.1 stub.
+  - name: pyxir
+    registry: pypi
+    url: https://pypi.org/project/pyxir/
+    repository: https://github.com/Xilinx/pyxir
+    language: python
+    official: false
+    version: 0.0.1
+    published: '2020-03-14'
+    description: >-
+      Neural-network intermediate-representation bridge used by Vitis AI / TVM.
+    note: >-
+      official set false deliberately: the PyPI record carries no project URL back to Xilinx
+      and only an individual author name, so first-party ownership of the REGISTRY entry is
+      not provable from the registry metadata even though github.com/Xilinx/pyxir is Xilinx's.
+excluded:
+  - name: xrt
+    registry: pypi
+    reason: >-
+      NOT Xilinx. pypi.org/project/xrt is "Ray tracing and wave propagation in x-ray regime"
+      by Konstantin Klementiev and Roman Chernikov (xrt.readthedocs.io). The Xilinx Runtime
+      (XRT) is distributed as DEB/RPM packages and GitHub releases, not on PyPI.
+      A name-only match would have credited Xilinx with another project's package.
+  - name: qonnx
+    registry: pypi
+    reason: >-
+      Published from github.com/fastmachinelearning/qonnx, a community organization Xilinx
+      contributes to but does not own.
+non_registry_distribution:
+  - name: XRT (Xilinx Runtime)
+    registry: none
+    url: https://github.com/Xilinx/XRT/releases
+    official: true
+    version: 2.25.0
+    published: '2026-08-18'
+    note: >-
+      Distributed as DEB/RPM installers per OS from GitHub releases and the AMD download
+      centre — there is no package-registry metadata endpoint to query. Version and date read
+      from the GitHub releases API.

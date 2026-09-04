@@ -1,0 +1,46 @@
+generated: '2026-09-04'
+method: searched
+source: https://xilinx.github.io/XRT/master/html/
+docs: https://xilinx.github.io/XRT/master/html/xrt-smi.html
+note: >-
+  Xilinx's first-party command-line surface is the XRT (Xilinx Runtime) toolset, documented on
+  the Xilinx-owned GitHub Pages site xilinx.github.io/XRT. It manages FPGA/adaptive-SoC devices
+  locally — it is not a client for any web API, because there is no Xilinx web API.
+  The XRT docs carry a forward notice that up-to-date xrt-smi documentation for Ryzen AI NPUs
+  now lives at ryzenai.docs.amd.com, an AMD-hosted successor.
+clis:
+  - name: xrt-smi
+    summary: XRT system management interface — the device management CLI for FPGA/adaptive-SoC cards.
+    docs: https://xilinx.github.io/XRT/master/html/xrt-smi.html
+    install:
+      - method: rpm
+        command: sudo yum install xrt_<version>.rpm
+      - method: deb
+        command: sudo apt install xrt_<version>.deb
+      - source: https://github.com/Xilinx/XRT/releases
+    global_flags: ['--verbose', '--batch', '--force', '--help', '--version']
+    commands:
+      - name: program
+        summary: Downloads a specified xclbin binary to the programmable region on the card.
+      - name: validate
+        summary: Validates the installed card by running precompiled basic tests.
+      - name: examine
+        summary: Reports the details of a specific device.
+      - name: configure
+        summary: Configures device settings for a user application (requires sudo).
+      - name: reset
+        summary: Resets the device.
+  - name: xclbinutil
+    summary: Creates, modifies and reports on xclbin container content.
+    docs: https://xilinx.github.io/XRT/master/html/xclbintools.html
+    key_flows:
+      - name: inspect an xclbin
+        command: xclbinutil -i binary_container_1.xclbin --info=<FILE_NAME>
+      - name: extract the bitstream image
+        command: xclbinutil --dump-section BITSTREAM:RAW:bitstream.bit --input binary_container_1.xclbin
+      - name: extract build metadata
+        command: xclbinutil --dump-section BUILD_METADATA:HTML:buildMetadata.json --input binary_container_1.xclbin
+      - name: remove a section
+        command: xclbinutil --remove-section BITSTREAM --input binary_container_1.xclbin --output binary_container_modified.xclbin
+      - name: migrate an older xclbin forward
+        summary: Migrates an older xclbin binary format forward via its mirror JSON data.

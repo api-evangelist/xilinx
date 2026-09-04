@@ -1,0 +1,19 @@
+generated: '2026-09-04'
+method: searched
+source: >-
+  Contract discovery across www.xilinx.com and xilinx.github.io, and the six proto3 contracts
+  in grpc/, 2026-09-04.
+limit_count: 0
+note: >-
+  No rate limits are published because there is no hosted API to limit. Xilinx's only service
+  contracts are the PYNQ gRPC services, which run on the user's own board over a local link —
+  there is no vendor-operated host, no quota and no throttling layer. The protos declare no
+  RESOURCE_EXHAUSTED handling and no backoff guidance. An honest zero.
+limits: []
+response_headers: []
+exhaustion_status: null
+evidence:
+  - url: https://www.xilinx.com/openapi.json
+    status: 404
+  - url: https://www.xilinx.com/.well-known/api-catalog
+    status: 404

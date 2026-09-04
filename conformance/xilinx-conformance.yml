@@ -1,0 +1,77 @@
+generated: '2026-09-04'
+method: derived
+source: grpc/ proto3 files + live probes recorded in well-known/xilinx-well-known.yml
+note: >-
+  Assertions are made only where a fetched artifact demonstrates them. Every standard Xilinx
+  does not implement is recorded as conforms:false with the probe that established it, rather
+  than being left out.
+conformance:
+  - id: protobuf3
+    conforms: true
+    evidence: >-
+      All six service definitions declare `syntax = "proto3"` — see
+      grpc/xilinx-pynq-mmio.proto line 1.
+  - id: grpc
+    conforms: true
+    evidence: >-
+      Six `service` blocks with 108 `rpc` methods, including client- and server-streaming
+      signatures (buffer.RemoteBuffer/read returns `stream BufferReadResponse`).
+  - id: openapi
+    conforms: false
+    evidence: >-
+      /openapi.json, /openapi.yaml, /swagger.json and /api-docs all 404 or redirect on
+      www.xilinx.com; a GitHub code search for `org:Xilinx filename:openapi` returns 0 results.
+  - id: asyncapi
+    conforms: false
+    evidence: No event, streaming or webhook contract published; no asyncapi document in the org.
+  - id: oauth2
+    conforms: false
+    evidence: >-
+      https://www.xilinx.com/.well-known/oauth-authorization-server returns 404; no proto
+      declares credentials.
+  - id: oidc
+    conforms: false
+    evidence: https://www.xilinx.com/.well-known/openid-configuration returns 404.
+  - id: rfc9457
+    conforms: false
+    evidence: >-
+      Errors are in-band boolean+string fields inside the response message; no
+      application/problem+json surface exists (see conventions/xilinx-conventions.yml).
+  - id: rfc9116
+    conforms: false
+    evidence: >-
+      https://www.xilinx.com/.well-known/security.txt returns 302 to a marketing page, not
+      RFC 9116 text; xilinx.github.io/.well-known/security.txt returns 404.
+  - id: rfc8594
+    conforms: false
+    evidence: No Sunset/Deprecation header policy; no HTTP API to carry one.
+  - id: idempotency
+    conforms: false
+    evidence: >-
+      No idempotency key or replay-protection mechanism in any of the 108 RPCs — see
+      conventions/xilinx-conventions.yml idempotency.coverage = none.
+  - id: pagination
+    conforms: false
+    evidence: No collection-returning RPC in the surface.
+domain_standards:
+  note: >-
+    The semiconductor / EDA market's interchange standards (IEEE 1685 IP-XACT, IEEE 1801 UPF,
+    IEEE 1735 IP encryption, SPIRIT) govern design-tool file formats, not service contracts.
+    Nothing in Xilinx's published service contracts declares one, and no domain-standard
+    conformance is asserted. This is reward-only scoring: an absent market standard is not
+    a deduction, and inventing one to fill the slot would be fabrication.
+  probed:
+    - standard: IEEE 1685 (IP-XACT)
+      declared_in_contract: false
+    - standard: KServe / Open Inference Protocol
+      declared_in_contract: false
+      note: >-
+        Checked because Vitis AI is an inference stack; the Vitis-AI protos are XIR graph
+        serialization formats (graph_proto_v1/v2, target.proto), not an inference service
+        contract, so no OIP conformance is claimed.
+certifications:
+  published: false
+  note: >-
+    No Xilinx-branded trust center or certification listing exists. AMD publishes corporate
+    security and compliance material at amd.com, but that is the parent company's artifact and
+    is not claimed here. NO `Compliance` pointer is emitted.

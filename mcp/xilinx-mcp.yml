@@ -1,0 +1,68 @@
+generated: '2026-09-04'
+method: derived
+source: grpc/xilinx-grpc.yml
+status: candidate
+note: >-
+  SEARCHED FIRST AND FOUND NOTHING. No Xilinx- or AMD-published MCP server exists for this
+  brand: no mcp.xilinx.com host, no MCP server in the 469-repository Xilinx GitHub organization,
+  no npm/PyPI MCP package, and no llms.txt tool list to fall back to. The tools below are a
+  CANDIDATE mapping DERIVED from the PYNQ gRPC contracts already in this repository. They are
+  not offered by anyone and no endpoint exists — do not treat this as an agent surface.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: none
+  verified: derived
+  pointer_emitted: false
+  pointer_note: >-
+    NO `MCPServer` pointer is wired in apis.yml. The scorer's mcp_server check asserts the
+    PROVIDER ships a server; this file records a derived candidate and an absence, and a
+    pointer here would read as a presence.
+searched:
+  - target: mcp.xilinx.com / xilinx.com MCP paths
+    result: host does not exist; www.xilinx.com 301s to www.amd.com
+  - target: github.com/Xilinx (469 public repos)
+    result: no MCP server repository
+  - target: npm registry search "xilinx"
+    result: no first-party package
+  - target: https://www.xilinx.com/llms.txt
+    result: 404 — no published tool list
+candidate_tools:
+  - name: pynq_mmio_read
+    backing_rpc: mmio.Mmio/read
+    description: Read a length of bytes at an offset from a memory-mapped region on the programmable logic.
+  - name: pynq_mmio_write
+    backing_rpc: mmio.Mmio/write
+    description: Write data at an offset into a memory-mapped region. Destructive, no reversal RPC.
+  - name: pynq_gpio_read
+    backing_rpc: gpio.Gpio/read
+    description: Read the current value of an exported GPIO pin.
+  - name: pynq_gpio_write
+    backing_rpc: gpio.Gpio/write
+    description: Write a value to an exported GPIO pin.
+  - name: pynq_buffer_allocate
+    backing_rpc: buffer.RemoteBuffer/allocate
+    description: Allocate a contiguous DMA buffer on the board. Reversed by freebuffer.
+  - name: pynq_buffer_free
+    backing_rpc: buffer.RemoteBuffer/freebuffer
+    description: Release a previously allocated DMA buffer.
+  - name: pynq_device_download_bitstream
+    backing_rpc: remote_device.RemoteDevice/download
+    description: Download a bitstream to the programmable logic. High consequence, no reversal.
+  - name: pynq_device_examine
+    backing_rpc: remote_device.RemoteDevice/existsfile
+    description: Check whether a file exists on the board filesystem.
+  - name: pynq_rfdc_get_ip_status
+    backing_rpc: xrfdc.Xrfdc/GetIPStatus
+    description: Read RF Data Converter IP status on an RFSoC device.
+  - name: pynq_rfclk_find_devices
+    backing_rpc: xrfclk.Xrfclk/find_devices
+    description: Discover the attached LMK and LMX RF clocking devices.
+coverage:
+  candidate_tools: 10
+  rpcs_in_contract: 108
+  note: >-
+    A representative subset, not a full mapping. The 77-RPC Xrfdc surface is not enumerated
+    because there is no server to expose it.

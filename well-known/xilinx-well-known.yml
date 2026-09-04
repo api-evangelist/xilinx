@@ -1,0 +1,65 @@
+generated: '2026-09-04'
+method: probed
+source: live HTTP probes of every host this record knows, 2026-09-04
+note: >-
+  No /.well-known document is served on any Xilinx-controlled host. www.xilinx.com answers
+  302 on /.well-known/security.txt and /.well-known/ai-plugin.json, but the redirect targets
+  are ordinary marketing pages (products/technology/design-security.html and the amd.com
+  home page) — the site redirects every unmatched path, so these are catch-all soft misses,
+  NOT served documents. No WellKnown or SecurityTxt pointer is emitted; this file records an
+  absence, and a recorded absence is data, not a presence.
+  xilinx.com (apex, no www) does not resolve in DNS at all — only www.xilinx.com exists, and
+  it 301s to www.amd.com. There are no API baseURL or OpenAPI servers[] hosts to probe
+  because Xilinx publishes no HTTP API.
+hosts:
+  - host: www.xilinx.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 302
+        file: null
+        note: redirects to https://www.xilinx.com/products/technology/design-security.html — a bitstream-security product page, not RFC 9116 text.
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 302
+        file: null
+        note: catch-all redirect to https://www.amd.com/en.html — not a plugin manifest.
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+  - host: xilinx.github.io
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+        file: null
+      - path: /.well-known/openid-configuration
+        status: 404
+        file: null
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        file: null
+      - path: /.well-known/api-catalog
+        status: 404
+        file: null
+      - path: /.well-known/ai-plugin.json
+        status: 404
+        file: null
+      - path: /.well-known/agent-card.json
+        status: 404
+        file: null
+      - path: /.well-known/agent.json
+        status: 404
+        file: null
+unresolved_hosts:
+  - host: xilinx.com
+    note: NXDOMAIN — the apex does not resolve; only www.xilinx.com is published.

@@ -1,3 +1,4 @@
+name: Xilinx
 aid: xilinx
 deliveryModel:
   model: unknown
@@ -25,9 +26,23 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/xilinx.png
 tags:
   - Fortune 1000
+  - Semiconductors
+  - FPGA
+  - Programmable Logic
+  - Adaptive Computing
+  - Hardware Acceleration
+  - Embedded Systems
+  - Machine Learning
+  - gRPC
+  - Open Source
 url: 
   https://raw.githubusercontent.com/api-evangelist/xilinx/refs/heads/main/apis.yml
-modified: '2026-03-24'
+created: '2026-04-07'
+modified: '2026-09-04'
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+    url: https://apievangelist.com
 apis: []
 common:
   - type: ParentCompany
@@ -43,6 +58,62 @@ common:
     url: https://www.linkedin.com/company/xilinx
   - type: Website
     url: https://www.xilinx.com
+  - type: Protobuf
+    url: grpc/xilinx-pynq-remote-device.proto
+  - type: Protobuf
+    url: grpc/xilinx-pynq-mmio.proto
+  - type: Protobuf
+    url: grpc/xilinx-pynq-gpio.proto
+  - type: Protobuf
+    url: grpc/xilinx-pynq-buffer.proto
+  - type: Protobuf
+    url: grpc/xilinx-pynq-xrfdc.proto
+  - type: Protobuf
+    url: grpc/xilinx-pynq-xrfclk.proto
+  - type: Packages
+    url: packages/xilinx-packages.yml
+  - type: SDKs
+    url: packages/xilinx-packages.yml
+  - type: CLI
+    url: cli/xilinx-cli.yml
+  - type: ChangeLog
+    url: changelog/xilinx-changelog.yml
+  - type: Lifecycle
+    url: lifecycle/xilinx-lifecycle.yml
+  - type: Conventions
+    url: conventions/xilinx-conventions.yml
+  - type: Conformance
+    url: conformance/xilinx-conformance.yml
+  - type: LLMsTxt
+    url: llms/xilinx-llms.txt
+  - type: Plans
+    url: plans/xilinx-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/xilinx-rate-limits.yml
+  - type: Documentation
+    url: https://docs.amd.com/
+  - type: Portal
+    url: https://www.amd.com/en/developer.html
+  - type: GettingStarted
+    url: https://pynq.readthedocs.io/en/latest/getting_started.html
+  - type: Support
+    url: https://adaptivesupport.amd.com/s/
+  - type: TermsOfService
+    url: https://www.amd.com/en/legal.html
+  - type: PrivacyPolicy
+    url: https://www.amd.com/en/legal/privacy.html
 description: >-
-  Xilinx was an American technology company that developed programmable logic devices
-  and the associated software before being acquired by AMD.
+  Xilinx was an American semiconductor company that invented the FPGA and built the Zynq SoC,
+  Versal adaptive SoC and Alveo accelerator lines together with the Vivado and Vitis design
+  toolchains, before AMD closed its $50B all-stock acquisition in February 2022. The brand no
+  longer runs its own web properties — every xilinx.com path now redirects into amd.com — but
+  github.com/Xilinx remains an active, verified organization of 469 public repositories, and it
+  is the only place Xilinx still publishes machine-readable contracts: the proto3 gRPC services
+  behind the PYNQ remote-device protocol, plus first-party Python packages for PYNQ, Brevitas,
+  FINN, RapidWright and the XRT runtime. There is no Xilinx HTTP or REST API.
+
+x-enrichment:
+  date: '2026-09-04'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v3

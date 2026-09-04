@@ -1,0 +1,93 @@
+generated: '2026-09-04'
+method: derived
+source: grpc/xilinx-grpc.yml and the six proto3 files in grpc/
+note: >-
+  Derived from the only contracts Xilinx publishes — the PYNQ remote-device gRPC services.
+  There is no HTTP API, so the usual REST conventions (pagination, sparse fields, expansion,
+  request-id headers, rate-limit headers) have no surface to describe and are recorded as n/a
+  rather than invented.
+transport:
+  protocol: gRPC over HTTP/2
+  idl: Protocol Buffers proto3
+  streaming: >-
+    Client-streaming (RemoteBuffer.write, RemoteDevice.download, RemoteDevice.writefile) and
+    server-streaming (RemoteBuffer.read, RemoteDevice.readfile) are both used for bulk data.
+authentication:
+  style: none declared
+  note: >-
+    No credentials, TLS configuration or metadata-based auth appears in any of the six .proto
+    files. The PYNQ remote-device server is designed for a trusted host-to-board link.
+error_envelope:
+  style: in-band response fields, not gRPC status codes
+  shape:
+    - field: status
+      type: bool
+      note: present on mmio/xrfclk-style responses; false signals failure.
+    - field: message
+      type: optional string
+      note: human-readable failure text (spelled `msg` in the mmio and buffer packages).
+  rfc9457: false
+  note: >-
+    Errors are carried as optional fields inside the success message rather than as
+    google.rpc.Status details — a caller must inspect the body, not just the gRPC code.
+    The field name is inconsistent across packages (`message` in gpio, `msg` in mmio/buffer),
+    which is a real interoperability wrinkle in the contract as published.
+pagination:
+  style: n/a
+  note: No collection-returning RPC in the surface; every call addresses one device resource.
+versioning:
+  style: per-release proto files inside the PYNQ source tree
+  note: No package-level version suffix (no gpio.v1); the contract versions with the PYNQ release.
+idempotency:
+  coverage: none
+  mechanism: null
+  scope: []
+  note: >-
+    No idempotency key, no request-id de-duplication, no conditional-write semantics anywhere
+    in the six services. Repeated calls to write, program_lmk, download or allocate re-execute
+    against the device. Reads (Mmio.read, Gpio.read, Xrfdc.Get*) are naturally idempotent, but
+    that is a property of the operation, not a replay-protection mechanism the provider ships.
+    NO `Idempotency` pointer is emitted.
+reversibility:
+  grade: documented
+  note: >-
+    Several write surfaces have an explicit inverse RPC in the same service, which is a real
+    reversal path. NONE of them states a time window, and the protos carry no comments about
+    one, so this grades `documented` (0.4) and not `verified`. No window is asserted here
+    because none is published.
+  surfaces:
+    - write: buffer.RemoteBuffer/allocate
+      reversal: buffer.RemoteBuffer/freebuffer
+      window: null
+    - write: gpio.Gpio/get_gpio
+      reversal: gpio.Gpio/unexport
+      window: null
+      note: get_gpio exports a pin; unexport releases it. is_exported inspects the state.
+    - write: mmio.mmio/write
+      reversal: null
+      window: null
+      note: >-
+        Register writes are destructive and have no undo RPC — the caller must read the prior
+        value with Mmio.read and write it back itself.
+    - write: xrfdc.Xrfdc/CfgInitialize and the Set* family
+      reversal: xrfdc.Xrfdc/Reset
+      window: null
+      note: Reset returns a tile to its startup state; it is a coarse reversal, not a per-setting undo.
+    - write: remote_device.RemoteDevice/download
+      reversal: null
+      window: null
+      note: A bitstream download replaces the programmable-logic image; recovery is downloading another bitstream.
+    - write: xrfclk.Xrfclk/program_lmk and program_lmx
+      reversal: null
+      window: null
+dry_run_mode:
+  supported: false
+  note: No RPC accepts a validate-only or dry-run flag.
+rate_limit_signaling:
+  style: n/a
+  note: No HTTP layer and no published limits; see rate-limits/xilinx-rate-limits.yml.
+cross_links:
+  - grpc/xilinx-grpc.yml
+  - lifecycle/xilinx-lifecycle.yml
+  - conformance/xilinx-conformance.yml
+  - rate-limits/xilinx-rate-limits.yml

@@ -1,0 +1,64 @@
+generated: '2026-09-04'
+method: searched
+source: https://github.com/Xilinx/PYNQ/tree/master/sdbuild/boot/meta-pynq/recipes-apps/pynq-cpp/files/protos
+note: >-
+  Xilinx publishes no HTTP/REST API. Its only machine-readable service contracts are the
+  Protocol Buffers / gRPC service definitions shipped in the first-party Xilinx/PYNQ repository
+  (BSD-3-Clause), which define the PYNQ remote-device protocol: a gRPC server runs on the
+  Zynq/RFSoC board and a PYNQ client on a host machine drives the board's MMIO, GPIO, DMA
+  buffers, RF data converter and RF clocking over it. These are on-device endpoints — there is
+  no vendor-operated host — so no baseURL is recorded.
+ownership:
+  verdict: first-party
+  evidence: >-
+    Files are served from github.com/Xilinx/PYNQ, the verified Xilinx GitHub organization
+    (2,341 stars, org "blog" field www.amd.com), under the PYNQ project Xilinx has maintained
+    since 2016. Proto packages are gpio/mmio/xrfdc/buffer/xrfclk/remote_device — PYNQ's own
+    driver surface, not a third party's.
+transport: gRPC (proto3)
+services:
+  - file: grpc/xilinx-pynq-remote-device.proto
+    package: remote_device
+    service: RemoteDevice
+    rpcs: 7
+    methods: [set_bitstream_attrs, download, set_pl_clk, shutdown, readfile, writefile, existsfile]
+    streaming: [download (client), readfile (server), writefile (client)]
+    summary: Bitstream download and file transfer to the remote PYNQ board.
+  - file: grpc/xilinx-pynq-mmio.proto
+    package: mmio
+    service: Mmio
+    rpcs: 3
+    methods: [get_mmio, read, write]
+    summary: Memory-mapped IO register access on the programmable logic.
+  - file: grpc/xilinx-pynq-gpio.proto
+    package: gpio
+    service: Gpio
+    rpcs: 7
+    methods: [get_gpio, read, write, unexport, is_exported, get_gpio_base_path, get_gpio_npins]
+    summary: Linux sysfs GPIO pin export, read and write.
+  - file: grpc/xilinx-pynq-buffer.proto
+    package: buffer
+    service: RemoteBuffer
+    rpcs: 9
+    methods: [allocate, write, read, freebuffer, flush, invalidate, physical_address, virtual_address, cacheable]
+    streaming: [write (client), read (server)]
+    summary: Contiguous DMA buffer allocation, cache maintenance and address translation.
+  - file: grpc/xilinx-pynq-xrfdc.proto
+    package: xrfdc
+    service: Xrfdc
+    rpcs: 77
+    summary: RF Data Converter (RFSoC) tile/block configuration, mixer, NCO, PLL and status surface.
+  - file: grpc/xilinx-pynq-xrfclk.proto
+    package: xrfclk
+    service: Xrfclk
+    rpcs: 5
+    methods: [find_devices, write_lmk_regs, write_lmx_regs, program_lmk, program_lmx]
+    summary: RF clocking (LMK/LMX PLL) device discovery and register programming.
+totals:
+  services: 6
+  rpcs: 108
+security:
+  transport_security: none declared in the .proto files
+  note: >-
+    The protos declare no authentication or TLS credentials; the PYNQ remote-device server is
+    intended for a trusted lab/local network between host and board.
