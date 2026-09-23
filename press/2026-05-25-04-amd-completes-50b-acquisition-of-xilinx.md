@@ -1,7 +1,9 @@
 ---
 title: AMD Completes $50B Acquisition of Xilinx
 url: https://www.engineering.com/amd-completes-50b-acquisition-of-xilinx/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Xilinx" press release artificial intelligence'
 position: 4
 source: serpapi-google

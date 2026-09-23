@@ -1,7 +1,9 @@
 ---
 title: AI Engine Technology
 url: https://www.amd.com/en/products/adaptive-socs-and-fpgas/technologies/ai-engine.html
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Xilinx" press release artificial intelligence'
 position: 5
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: Unleashing Edge Intelligence on XILINX FPGA through ...
 url: https://www.iwavesystems.com/news/unleashing-edge-intelligence-on-xilinx-fpga-through-corazon-ai/
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Xilinx" press release artificial intelligence'
 position: 1
 source: serpapi-google
