@@ -32,9 +32,9 @@ tags:
   - Adaptive Computing
   - Hardware Acceleration
   - Embedded Systems
-  - Machine-Learning
+  - Machine Learning
   - gRPC
-  - Open-Source
+  - Open Source
 tags_raw:
   - Fortune 1000
   - Semiconductors
@@ -46,6 +46,8 @@ tags_raw:
   - Machine Learning
   - gRPC
   - Open Source
+  - Machine-Learning
+  - Open-Source
 url: 
   https://raw.githubusercontent.com/api-evangelist/xilinx/refs/heads/main/apis.yml
 created: '2026-04-07'
