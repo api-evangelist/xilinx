@@ -15,3 +15,40 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: xilinx-mlcommons-mlperf
+  label: MLCommons MLPerf
+  partner: mlcommons
+  partner_name: MLCommons MLPerf
+  category: ML benchmark results
+  type: register
+  channel: standard-directory
+  evidence: https://github.com/mlcommons/inference_results_v1.0/tree/main/closed/Xilinx
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: MLCommons MLPerf results (github.com/mlcommons/<family>_results_v<round>, closed/ + open/ submitter
+      directories)
+    spec_file: null
+    standard: MLPerf (MLCommons)
+    role: mlperf-submitter (lapsed)
+    registered_name: Xilinx
+    register_directories:
+    - Xilinx
+    matched_domain: xilinx.com
+    matched_by: domain
+    identity_source: wikidata Q1046482 'Xilinx' P856 http://www.xilinx.com/
+    identity_note: 'MLPerf publishes names only: domain from Wikidata P856 (labelled lookup, Kin 2026-10-15 decision
+      1), then partner_link (domain + name check)'
+    certified_products:
+    - product: MLPerf Inference (closed division)
+      newest_round: v1.0
+      lapsed: true
+    open_division_only: []
+    current_window: each family's newest 2 rounds
+    signal_note: certified_products = one entry per benchmark FAMILY with a closed-division (peer-reviewed, reference-rules)
+      result, lapsed outside the current window; open-division families, rounds and result counts are context, never
+      read
+    detected_by: sweep-mlops.py
+    detected: '2026-10-15'
+  status: not-a-workflow
+  arazzo: null
