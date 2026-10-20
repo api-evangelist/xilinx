@@ -12,6 +12,11 @@ checked:
 - https://registry.npmjs.org
 - https://repo1.maven.org/maven2
 - https://rubygems.org/api/v1
+- https://landscape.aousd.org/data/full.json
+- https://www.khronos.org/conformance/adopters/conformant-companies
+- https://www.khronos.org/conformance/adopters/conformant-products
+- https://www.khronos.org/conformance/adopters/file-format-adopters
+- https://www.khronos.org/members/list
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -30,42 +35,6 @@ edges:
   seller_name: Xilinx Inc.
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-- partner_name: MLCommons MLPerf
-  partner: mlcommons
-  partner_match: register
-  type: register
-  direction: partner-built
-  category: ML benchmark results
-  evidence: https://github.com/mlcommons/inference_results_v1.0/tree/main/closed/Xilinx
-  channel: standard-directory
-  relationship: standard-participant
-  contract_reference:
-    register: MLCommons MLPerf results (github.com/mlcommons/<family>_results_v<round>, closed/ + open/ submitter
-      directories)
-    spec_file: null
-    standard: MLPerf (MLCommons)
-    role: mlperf-submitter (lapsed)
-    registered_name: Xilinx
-    register_directories:
-    - Xilinx
-    matched_domain: xilinx.com
-    matched_by: domain
-    identity_source: wikidata Q1046482 'Xilinx' P856 http://www.xilinx.com/
-    identity_note: 'MLPerf publishes names only: domain from Wikidata P856 (labelled lookup, Kin 2026-10-15 decision
-      1), then partner_link (domain + name check)'
-    certified_products:
-    - product: MLPerf Inference (closed division)
-      newest_round: v1.0
-      lapsed: true
-    open_division_only: []
-    current_window: each family's newest 2 rounds
-    signal_note: certified_products = one entry per benchmark FAMILY with a closed-division (peer-reviewed, reference-rules)
-      result, lapsed outside the current window; open-division families, rounds and result counts are context, never
-      read
-    detected_by: sweep-mlops.py
-    detected: '2026-10-15'
-  detected_by: sweep-mlops.py
-  first_seen: '2026-10-15'
 - partner_name: PyPI
   partner: pypi
   partner_match: register
@@ -105,6 +74,79 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: MLCommons MLPerf
+  partner: mlcommons
+  partner_match: register
+  type: register
+  direction: partner-built
+  category: ML benchmark results
+  evidence: https://github.com/mlcommons/inference_results_v1.0/tree/main/closed/Xilinx
+  channel: standard-directory
+  relationship: standard-participant
+  contract_reference:
+    register: MLCommons MLPerf results (github.com/mlcommons/<family>_results_v<round>, closed/ + open/ submitter
+      directories)
+    spec_file: null
+    standard: MLPerf (MLCommons)
+    role: mlperf-submitter (lapsed)
+    registered_name: Xilinx
+    register_directories:
+    - Xilinx
+    matched_domain: xilinx.com
+    matched_by: domain
+    identity_source: wikidata Q1046482 'Xilinx' P856 http://www.xilinx.com/
+    identity_note: 'MLPerf publishes names only: domain from Wikidata P856 (labelled lookup, Kin 2026-10-15 decision
+      1), then partner_link (domain + name check)'
+    certified_products:
+    - product: MLPerf Inference (closed division)
+      newest_round: v1.0
+      lapsed: true
+    open_division_only: []
+    current_window: each family's newest 2 rounds
+    signal_note: certified_products = one entry per benchmark FAMILY with a closed-division (peer-reviewed, reference-rules)
+      result, lapsed outside the current window; open-division families, rounds and result counts are context, never
+      read
+    detected_by: sweep-mlops.py
+    detected: '2026-10-19'
+  detected_by: sweep-mlops.py
+  first_seen: '2026-10-15'
+- partner_name: Khronos Group conformant products
+  partner: null
+  partner_match: register-name
+  type: register
+  direction: partner-built
+  evidence: https://www.khronos.org/conformance/adopters/conformant-products/opencl#submission_198
+  category: graphics API conformance
+  channel: standard-directory
+  relationship: standard-participant
+  contract_reference:
+    register: Khronos Group conformant products + API adopters (khronos.org/conformance/adopters)
+    standard: Khronos conformance
+    spec_file: null
+    role: khronos-conformant-adopter
+    registered_name: Xilinx, Inc.
+    register_id: https://www.khronos.org/conformance/adopters/conformant-products/opencl#submission_198
+    matched_domain: null
+    matched_by: register-name
+    certified_products:
+    - product: OpenCL
+      lapsed: false
+      newest_submission: '2014-12-17'
+      versions:
+      - OpenCL_1_0
+      submissions_listed: 1
+    products_sample:
+    - Xilinx Zynq-7000 All Programmable SoC ZC706 Evaluation Kit (Xilinx Zynq-7000 XC7Z045)
+    signal_note: certified_products = one entry per Khronos API the company is a conformant adopter of (the API
+      Adopters page), never per submission or product; dates, versions and submission counts are context. Khronos
+      marks no conformance as superseded or lapsed, so lapsed is false
+    detected_by: sweep-xr-graphics.py
+    detected: '2026-10-20'
+    identity_source: register-name
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  detected_by: sweep-xr-graphics.py
+  first_seen: '2026-10-20'
 source:
 - https://github.com/lfai/landscape
 - https://github.com/mlcommons
