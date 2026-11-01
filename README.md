@@ -64,12 +64,103 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-This is a repository for tracking the APIs, SDKs, and other developer resources for Xilinx.
+Xilinx was an American semiconductor company that invented the FPGA and built the Zynq SoC, Versal adaptive SoC and Alveo accelerator lines together with the Vivado and Vitis design toolchains, before AMD closed its $50B all-stock acquisition in February 2022. The brand no longer runs its own web properties — every xilinx.com path now redirects into amd.com — but github.com/Xilinx remains an active, verified organization of 469 public repositories, and it is the only place Xilinx still publishes machine-readable contracts: the proto3 gRPC services behind the PYNQ remote-device protocol, plus first-party Python packages for PYNQ, Brevitas, FINN, RapidWright and the XRT runtime. There is no Xilinx HTTP or REST API.
 
-## APIs
+**Areas:** Fortune 1000 · Semiconductors · FPGA · Programmable Logic · Adaptive Computing · Hardware Acceleration · Embedded Systems · Machine Learning · gRPC · Open Source
 
-No APIs have been documented yet. Check back for updates.
+## Xilinx on APIs.io
 
-## Properties
+Everything profiled for Xilinx is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/xilinx/](https://apis.io/providers/xilinx/)** — or go straight to one of the APIs or properties below.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [xilinx-mcp.yml](https://apis.io/servers/xilinx/xilinx-mcp-yml/)
+
+#### Security (1)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Xilinx Domain Security](https://apis.io/security/xilinx/xilinx-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Xilinx Plans Pricing](https://apis.io/plans/xilinx/xilinx-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Xilinx Rate Limits](https://apis.io/rate-limits/xilinx/xilinx-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.xilinx.com)
+- [Documentation](https://docs.amd.com/)
+- [Getting started](https://pynq.readthedocs.io/en/latest/getting_started.html)
+- [Support](https://adaptivesupport.amd.com/s/)
+- [Terms of service](https://www.amd.com/en/legal.html)
+- [Privacy policy](https://www.amd.com/en/legal/privacy.html)
+- [GitHub](https://github.com/Xilinx)
+
+## API Evangelist rating
+
+**Kin Score 26.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 55.4 |
+| Contract quality | 24.0 |
+| Contract governance | 4.5 |
+| Operational transparency | 18.4 |
+| Developer ergonomics | 50.0 |
+| Access clarity | 10.5 |
+
+**Agent readiness 15.5** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 13.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/xilinx/](https://apis.io/providers/xilinx/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Xilinx: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/xilinx/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
